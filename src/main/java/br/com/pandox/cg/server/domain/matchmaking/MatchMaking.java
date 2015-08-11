@@ -1,5 +1,6 @@
-package br.com.pandox.cg.server.domain;
+package br.com.pandox.cg.server.domain.matchmaking;
 
+import br.com.pandox.cg.server.domain.battleground.Battleground;
 import br.com.pandox.cg.server.domain.player.Player;
 import br.com.pandox.cg.server.domain.shared.Domain;
 
@@ -12,4 +13,6 @@ public interface MatchMaking extends Domain {
     MatchMakingImpl.Status status();
 
     Set<Player> players();
+
+    Battleground battleground();
 }

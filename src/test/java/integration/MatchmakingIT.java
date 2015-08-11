@@ -12,12 +12,11 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class MatchmakingIT extends IntegrationServer {
 
-
     @Test
     public void should_queue_2_players_and_match_them() {
         given()
             .contentType(ContentType.JSON)
-            .body("{ \"name\": \"Player1\" }")
+            .body("{ \"player\": 1 }")
             .when()
             .post("http://127.0.0.1:15081/api/matchmaking")
             .then()
@@ -28,7 +27,7 @@ public class MatchmakingIT extends IntegrationServer {
 
         given()
             .contentType(ContentType.JSON)
-            .body("{ \"name\": \"Player2\" }")
+            .body("{ \"player\": 2 }")
             .when()
             .post("http://127.0.0.1:15081/api/matchmaking")
             .then()
@@ -41,6 +40,9 @@ public class MatchmakingIT extends IntegrationServer {
         get("http://127.0.0.1:15081/api/matchmaking/1")
             .then()
             .assertThat()
-            .statusCode(HttpStatus.SC_OK);
+            .statusCode(HttpStatus.SC_OK)
+            .and()
+            .body("battleground_id", equalTo(1));
     }
+
 }

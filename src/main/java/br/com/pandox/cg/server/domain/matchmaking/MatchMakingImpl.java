@@ -1,17 +1,20 @@
-package br.com.pandox.cg.server.domain;
+package br.com.pandox.cg.server.domain.matchmaking;
 
+import br.com.pandox.cg.server.domain.battleground.Battleground;
+import br.com.pandox.cg.server.domain.battleground.BattlegroundImpl;
 import br.com.pandox.cg.server.domain.player.Player;
-import br.com.pandox.cg.server.infrastructure.repository.MatchmakingRepository;
+import br.com.pandox.cg.server.infrastructure.repository.matchmaking.MatchmakingRepository;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class MatchMakingImpl implements MatchMaking {
 
-    private Status status;
     private Long identifier;
+    private Status status;
     private MatchmakingRepository matchmakingRepository;
     private Set<Player> players;
+    private Battleground battleground;
 
     public enum Status {
         MATCHED, WAITING
@@ -34,7 +37,9 @@ public class MatchMakingImpl implements MatchMaking {
         this.players.add(player);
         if(players.size() == 2) {
             status = Status.MATCHED;
+            battleground = new BattlegroundImpl(1L, players);
         }
+
         matchmakingRepository.persist(this);
     }
 
@@ -46,5 +51,10 @@ public class MatchMakingImpl implements MatchMaking {
     @Override
     public Set<Player> players() {
         return players;
+    }
+
+    @Override
+    public Battleground battleground() {
+        return battleground;
     }
 }

@@ -1,6 +1,6 @@
-package br.com.pandox.cg.server.infrastructure.repository;
+package br.com.pandox.cg.server.infrastructure.repository.matchmaking;
 
-import br.com.pandox.cg.server.domain.MatchMaking;
+import br.com.pandox.cg.server.domain.matchmaking.MatchMaking;
 
 public interface MatchmakingRepository {
 

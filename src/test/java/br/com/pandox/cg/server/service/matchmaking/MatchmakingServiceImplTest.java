@@ -1,10 +1,10 @@
 package br.com.pandox.cg.server.service.matchmaking;
 
-import br.com.pandox.cg.server.domain.MatchMaking;
-import br.com.pandox.cg.server.domain.MatchMakingImpl;
+import br.com.pandox.cg.server.domain.matchmaking.MatchMaking;
+import br.com.pandox.cg.server.domain.matchmaking.MatchMakingImpl;
 import br.com.pandox.cg.server.domain.player.Player;
 import br.com.pandox.cg.server.domain.player.PlayerImpl;
-import br.com.pandox.cg.server.infrastructure.repository.MatchmakingRepository;
+import br.com.pandox.cg.server.infrastructure.repository.matchmaking.MatchmakingRepository;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -33,7 +33,7 @@ public class MatchmakingServiceImplTest {
     public void should_return_new_matchmaking_from_player() {
         when(repository.next()).thenReturn(new MatchMakingImpl(1L, repository));
 
-        Player player = new PlayerImpl();
+        Player player = new PlayerImpl(1L);
         MatchMaking matchMaking = service.enqueue(player);
 
         assertEquals(matchMaking.identifier().longValue(), 1L);
@@ -43,7 +43,7 @@ public class MatchmakingServiceImplTest {
     public void new_matchmaking_should_has_correct_status_upon_creation() {
         when(repository.next()).thenReturn(new MatchMakingImpl(1L, repository));
 
-        Player player = new PlayerImpl();
+        Player player = new PlayerImpl(1L);
         MatchMaking matchMaking = service.enqueue(player);
 
         assertEquals(matchMaking.status(), MatchMakingImpl.Status.WAITING);
@@ -57,8 +57,8 @@ public class MatchmakingServiceImplTest {
             .thenReturn(matchMakingEntity)
             .thenReturn(matchMakingEntity);
 
-        PlayerImpl player1 = new PlayerImpl();
-        PlayerImpl player2 = new PlayerImpl();
+        PlayerImpl player1 = new PlayerImpl(1L);
+        PlayerImpl player2 = new PlayerImpl(2L);
         service.enqueue(player1);
         MatchMaking matchMaking = service.enqueue(player2);
 
@@ -84,8 +84,8 @@ public class MatchmakingServiceImplTest {
             .thenReturn(matchMakingEntity)
             .thenReturn(matchMakingEntity);
 
-        service.enqueue(new PlayerImpl());
-        MatchMaking matchMaking = service.enqueue(new PlayerImpl());
+        service.enqueue(new PlayerImpl(1L));
+        MatchMaking matchMaking = service.enqueue(new PlayerImpl(2L));
 
         assertEquals(matchMaking.status(), MatchMakingImpl.Status.MATCHED);
     }

@@ -1,4 +1,8 @@
 package br.com.pandox.cg.server.domain.player;
 
-public interface Player {
+import br.com.pandox.cg.server.domain.shared.Domain;
+
+public interface Player extends Domain {
+
+    String name();
 }

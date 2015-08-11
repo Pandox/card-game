@@ -1,8 +1,9 @@
 package br.com.pandox.cg.server.view.endpoint.matchmaking;
 
-import br.com.pandox.cg.server.domain.MatchMaking;
-import br.com.pandox.cg.server.domain.player.PlayerImpl;
+import br.com.pandox.cg.server.domain.matchmaking.MatchMaking;
+import br.com.pandox.cg.server.domain.player.Player;
 import br.com.pandox.cg.server.service.matchmaking.MatchmakingService;
+import br.com.pandox.cg.server.service.player.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +20,15 @@ public class MatchmakingEndpoint {
     @Autowired
     private MatchmakingService service;
 
+    @Autowired
+    private PlayerService playerService;
+
     @RequestMapping(value = "/matchmaking", method = RequestMethod.POST)
     public ResponseEntity enqueue(@RequestBody(required = false) MatchmakingDTO dto) {
 
-        MatchMaking matchMaking = service.enqueue(new PlayerImpl());
+        Player player = playerService.find(dto.getPlayer());
+
+        MatchMaking matchMaking = service.enqueue(player);
 
         return parseToResponse(matchMaking, HttpStatus.CREATED);
     }
@@ -34,6 +40,14 @@ public class MatchmakingEndpoint {
 
         return parseToResponse(matchMaking, HttpStatus.OK);
     }
+
+//    @RequestMapping(value = "/matchmaking/{id}/ready", method = RequestMethod.PUT)
+//    public ResponseEntity read(@PathVariable("id") Long id, @RequestBody(required = false) MatchmakingDTO dto) {
+//
+//        MatchMaking matchMaking = service.find(id);
+//
+//        return parseToResponse(matchMaking, HttpStatus.OK);
+//    }
 
 //    @ExceptionHandler(InvalidCEP.class)
 //    @ResponseStatus(value = HttpStatus.BAD_REQUEST)

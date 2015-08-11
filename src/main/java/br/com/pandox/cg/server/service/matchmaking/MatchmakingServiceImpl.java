@@ -1,8 +1,8 @@
 package br.com.pandox.cg.server.service.matchmaking;
 
-import br.com.pandox.cg.server.domain.MatchMaking;
+import br.com.pandox.cg.server.domain.matchmaking.MatchMaking;
 import br.com.pandox.cg.server.domain.player.Player;
-import br.com.pandox.cg.server.infrastructure.repository.MatchmakingRepository;
+import br.com.pandox.cg.server.infrastructure.repository.matchmaking.MatchmakingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
