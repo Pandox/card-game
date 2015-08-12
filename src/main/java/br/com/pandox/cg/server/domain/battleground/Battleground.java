@@ -1,10 +1,12 @@
 package br.com.pandox.cg.server.domain.battleground;
 
-import br.com.pandox.cg.server.domain.battleground.gameMechanics.Targetable;
+import br.com.pandox.cg.server.domain.battleground.gameMechanics.Destroyable;
 import br.com.pandox.cg.server.domain.battleground.playerground.PlayerGround;
-import br.com.pandox.cg.server.domain.battleground.playerground.phase.BattlegroundPhase;
 import br.com.pandox.cg.server.domain.cards.BasicCard;
+import br.com.pandox.cg.server.domain.event.DamageEvent;
 import br.com.pandox.cg.server.domain.shared.Domain;
+
+import java.util.List;
 
 public interface Battleground extends Domain {
 
@@ -22,15 +24,25 @@ public interface Battleground extends Domain {
      */
     short firstPlayer();
 
-    BattlegroundPhase phase();
 
-    BasicCard drawCard();
+    Round round();
 
-    void setCard(BasicCard card);
+    interface Round {
 
-    void attack(BasicCard card, Targetable target);
+        Turn turn();
 
-    PlayerGround actual();
+        interface Turn {
+            BasicCard drawCard();
+
+            void setCard(BasicCard card);
+
+            List<DamageEvent> attack(BasicCard card, Destroyable target);
+
+            PlayerGround player();
+
+            PlayerGround enemy();
+        }
+    }
 
 
 

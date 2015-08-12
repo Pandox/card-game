@@ -4,6 +4,8 @@ import br.com.pandox.cg.server.domain.battleground.gameMechanics.GameMechanics;
 import br.com.pandox.cg.server.domain.battleground.playerground.exception.AlreadyDrawCard;
 import br.com.pandox.cg.server.domain.battleground.playerground.field.Field;
 import br.com.pandox.cg.server.domain.battleground.playerground.field.FieldImpl;
+import br.com.pandox.cg.server.domain.battleground.playerground.hero.Hero;
+import br.com.pandox.cg.server.domain.battleground.playerground.hero.HeroImpl;
 import br.com.pandox.cg.server.domain.battleground.playerground.playerHand.PlayerHand;
 import br.com.pandox.cg.server.domain.battleground.playerground.playerHand.PlayerHandImpl;
 import br.com.pandox.cg.server.domain.battleground.playerground.runePool.RunePool;
@@ -19,10 +21,12 @@ public class PlayerGroundImpl implements PlayerGround {
     private final PlayerHand playerHand;
     private final Field field;
     private final RunePool runePool;
+    private final Hero hero;
 
     boolean drawCard;
 
     public PlayerGroundImpl(Player player, Deck deck) {
+        this.hero = new HeroImpl();
         this.player = player;
         this.deck = deck;
         this.playerHand = new PlayerHandImpl();
@@ -71,5 +75,10 @@ public class PlayerGroundImpl implements PlayerGround {
 
     @Override public int runes() {
         return runePool.remaining();
+    }
+
+    @Override
+    public Hero hero() {
+        return hero;
     }
 }

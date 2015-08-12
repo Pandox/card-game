@@ -1,6 +1,7 @@
 package br.com.pandox.cg.server.domain.battleground.playerground;
 
 import br.com.pandox.cg.server.domain.battleground.playerground.field.Field;
+import br.com.pandox.cg.server.domain.battleground.playerground.hero.Hero;
 import br.com.pandox.cg.server.domain.battleground.playerground.playerHand.PlayerHand;
 import br.com.pandox.cg.server.domain.cards.BasicCard;
 import br.com.pandox.cg.server.domain.cards.deck.Deck;
@@ -20,4 +21,6 @@ public interface PlayerGround {
     Field field();
 
     int runes();
+
+    Hero hero();
 }
