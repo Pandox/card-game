@@ -1,4 +1,4 @@
-package br.com.pandox.cg.server.domain.battleground.playerground.runeManager;
+package br.com.pandox.cg.server.domain.battleground.playerground.runePool;
 
 import br.com.pandox.cg.server.domain.battleground.playerground.exception.OutOfRunes;
 import br.com.pandox.cg.server.domain.cards.BasicCard;
@@ -22,6 +22,9 @@ public class RunePoolImpl implements RunePool {
     }
 
     @Override public void consume(BasicCard card) throws OutOfRunes {
-        runes = (runes - card.runes());
+        if(remaining() < card.runes()) {
+            throw new OutOfRunes();
+        }
+        consumed += card.runes();
     }
 }

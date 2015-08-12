@@ -1,4 +1,4 @@
-package br.com.pandox.cg.server.domain.battleground.playerground.runeManager;
+package br.com.pandox.cg.server.domain.battleground.playerground.runePool;
 
 import br.com.pandox.cg.server.domain.battleground.playerground.exception.OutOfRunes;
 import br.com.pandox.cg.server.domain.cards.BasicCard;
