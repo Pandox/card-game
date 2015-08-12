@@ -30,8 +30,8 @@ public class BattlegroundImplTest {
     @Test
     public void when_round_start_first_player_must_draw_a_card() {
         Battleground battleground = getBattleground();
-        battleground.red().drawCard();
-        int cardsHand = battleground.red().hand().cards().size();
+        battleground.actual().drawCard();
+        int cardsHand = battleground.actual().hand().cards().size();
         assertEquals(cardsHand, GameMechanics.FIRST_HAND_SIZE+1);
     }
 
