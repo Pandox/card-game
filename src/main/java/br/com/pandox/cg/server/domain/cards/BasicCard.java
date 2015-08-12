@@ -1,6 +1,9 @@
 package br.com.pandox.cg.server.domain.cards;
 
-public interface BasicCard {
+import br.com.pandox.cg.server.domain.battleground.gameMechanics.Damager;
+import br.com.pandox.cg.server.domain.battleground.gameMechanics.Destroyable;
+
+public interface BasicCard extends Damager, Destroyable {
 
     Integer power();
 
