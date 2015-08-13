@@ -11,6 +11,4 @@ public interface DamageProcessor {
 
     List<DamageData> process(Damager source, Destroyable destroyable);
 
-    void process(Battleground battleground, List<DamageData> damageDatas);
-
 }

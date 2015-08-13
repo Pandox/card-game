@@ -27,10 +27,6 @@ public class SimpleDamageProcessor implements DamageProcessor {
         return data;
     }
 
-    @Override
-    public void process(Battleground battleground, List<DamageData> damageDatas) {
-
-    }
 
     private boolean isCounterAttack(Damager source, Destroyable destroyable) {
         return source instanceof Destroyable && destroyable instanceof Damager;

@@ -1,8 +1,9 @@
 package br.com.pandox.cg.server.domain.battleground;
 
+import br.com.pandox.cg.events.event.AttackEvent;
 import br.com.pandox.cg.server.domain.battleground.gameMechanics.GameMechanics;
 import br.com.pandox.cg.server.domain.cards.BasicCard;
-import br.com.pandox.cg.server.domain.damageProcessor.NullEventBus;
+import br.com.pandox.cg.commons.MockEventPublisher;
 import br.com.pandox.cg.server.domain.player.Player;
 import br.com.pandox.cg.server.domain.player.PlayerImpl;
 import org.testng.annotations.Test;
@@ -12,6 +13,7 @@ import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
 public class BattlegroundImplTest {
 
@@ -54,9 +56,9 @@ public class BattlegroundImplTest {
         BasicCard card = turn.player().hand().cards().get(0);
         turn.setCard(card);
 
-        NullEventBus eventBus = new NullEventBus();
-        turn.attack(card, turn.enemy().hero(), eventBus);
-        assertNotNull(eventBus.getEvent());
+        MockEventPublisher publisher = new MockEventPublisher();
+        turn.attack(card, turn.enemy().hero(), publisher);
+        assertTrue(publisher.getEvents().get(0) instanceof AttackEvent);
     }
 
     private Battleground getBattleground() {

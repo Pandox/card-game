@@ -1,5 +1,6 @@
 package br.com.pandox.cg.server.domain.battleground;
 
+import br.com.pandox.cg.events.EventPublisher;
 import br.com.pandox.cg.server.domain.battleground.gameMechanics.Destroyable;
 import br.com.pandox.cg.server.domain.battleground.playerground.PlayerGround;
 import br.com.pandox.cg.server.domain.cards.BasicCard;
@@ -34,7 +35,7 @@ public interface Battleground extends Domain {
 
             void setCard(BasicCard card);
 
-            void attack(BasicCard card, Destroyable target, EventBus eventBus);
+            void attack(BasicCard card, Destroyable target, EventPublisher publisher);
 
             PlayerGround player();
 

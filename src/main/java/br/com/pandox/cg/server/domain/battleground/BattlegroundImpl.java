@@ -1,5 +1,7 @@
 package br.com.pandox.cg.server.domain.battleground;
 
+import br.com.pandox.cg.events.EventPublisher;
+import br.com.pandox.cg.events.event.AttackEvent;
 import br.com.pandox.cg.server.domain.battleground.gameMechanics.Destroyable;
 import br.com.pandox.cg.server.domain.battleground.playerground.PlayerGround;
 import br.com.pandox.cg.server.domain.battleground.playerground.PlayerGroundImpl;
@@ -65,17 +67,13 @@ public class BattlegroundImpl implements Battleground, Battleground.Round, Battl
     }
 
     @Override
-    public void attack(BasicCard card, Destroyable target, EventBus eventBus) {
+    public void attack(BasicCard card, Destroyable target, EventPublisher eventPublisher) {
         ImmutableList<BasicCard> fieldCards = round().turn().player().field().cards();
         for (BasicCard fieldCard : fieldCards) {
             if(card.equals(fieldCard)) {
-                eventBus.post(new AttackEvent());
+                eventPublisher.publish(new AttackEvent(card, target));
             }
         }
-    }
-
-    public class AttackEvent {
-
     }
 
     @Override
