@@ -25,11 +25,17 @@ public class DamagerAttackEventHandler {
     @Subscribe
     public void listen(AttackEvent event){
 
+        System.out.println("event = " + event);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Damager source = event.damager();
         Destroyable destroyable = event.target();
 
         DamageData damageData = processDamage(source, destroyable);
-        eventPublisher.publish(new DamageDataEvent());
+//        eventPublisher.publish(new DamageDataEvent());
 
 
 //        ArrayList<DamageData> data = Lists.newArrayList(damageData);

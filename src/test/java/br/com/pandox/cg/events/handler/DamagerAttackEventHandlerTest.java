@@ -6,6 +6,8 @@ import br.com.pandox.cg.events.EventPublisher;
 import br.com.pandox.cg.events.event.AttackEvent;
 import br.com.pandox.cg.server.domain.battleground.playerground.hero.HeroImpl;
 import br.com.pandox.cg.server.domain.cards.SoldierCard;
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
