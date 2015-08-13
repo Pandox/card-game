@@ -17,7 +17,7 @@ public class HeroImpl implements Hero {
     }
 
     @Override
-    public boolean isDestroied() {
+    public boolean isDestroyed() {
         return false;
     }
 

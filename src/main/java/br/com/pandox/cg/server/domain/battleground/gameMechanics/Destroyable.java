@@ -1,6 +1,5 @@
 package br.com.pandox.cg.server.domain.battleground.gameMechanics;
 
-import br.com.pandox.cg.server.domain.cards.BasicCard;
 import br.com.pandox.cg.server.domain.event.DamageEvent;
 
 /**
@@ -10,7 +9,7 @@ public interface Destroyable {
 
     Integer life();
 
-    boolean isDestroied();
+    boolean isDestroyed();
 
     DamageEvent damage(Damager damager);
 }

@@ -21,13 +21,13 @@ public class SoldierCard implements BasicCard {
     }
 
     @Override
-    public boolean isDestroied() {
+    public boolean isDestroyed() {
         return life() < 1;
     }
 
     @Override
     public DamageEvent damage(Damager damager) {
-        int previousLife = Integer.valueOf(this.lifePoints);
+        int previousLife = this.lifePoints;
         this.lifePoints -= damager.power();
         return new DamageEventImpl(damager, this, previousLife, lifePoints);
     }
