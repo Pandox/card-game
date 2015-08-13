@@ -4,7 +4,7 @@ import br.com.pandox.cg.server.domain.battleground.gameMechanics.Destroyable;
 import br.com.pandox.cg.server.domain.battleground.playerground.PlayerGround;
 import br.com.pandox.cg.server.domain.cards.BasicCard;
 import br.com.pandox.cg.server.domain.damageProcessor.DamageProcessor;
-import br.com.pandox.cg.server.domain.event.DamageEvent;
+import br.com.pandox.cg.server.domain.event.DamageData;
 import br.com.pandox.cg.server.domain.shared.Domain;
 
 import java.util.List;
@@ -37,7 +37,7 @@ public interface Battleground extends Domain {
 
             void setCard(BasicCard card);
 
-            List<DamageEvent> attack(BasicCard card, Destroyable target, DamageProcessor damageProcessor);
+            List<DamageData> attack(BasicCard card, Destroyable target, DamageProcessor damageProcessor);
 
             PlayerGround player();
 

@@ -1,8 +1,6 @@
 package br.com.pandox.cg.server.domain.cards;
 
 import br.com.pandox.cg.server.domain.battleground.gameMechanics.Damager;
-import br.com.pandox.cg.server.domain.event.DamageEvent;
-import br.com.pandox.cg.server.domain.event.DamageEventImpl;
 
 public class SoldierCard implements BasicCard {
 
@@ -26,11 +24,10 @@ public class SoldierCard implements BasicCard {
     }
 
     @Override
-    public DamageEvent damage(Damager damager) {
-        int previousLife = this.lifePoints;
+    public void damage(Damager damager) {
         this.lifePoints -= damager.power();
-        return new DamageEventImpl(damager, this, previousLife, lifePoints);
     }
+
 
     @Override public Integer runes() {
         return 1;

@@ -3,14 +3,14 @@ package br.com.pandox.cg.server.domain.event;
 import br.com.pandox.cg.server.domain.battleground.gameMechanics.Damager;
 import br.com.pandox.cg.server.domain.battleground.gameMechanics.Destroyable;
 
-public class DamageEventImpl implements DamageEvent {
+public class DamageDataImpl implements DamageData {
 
     private final Damager source;
     private final Destroyable target;
     private final Integer previousLife;
     private final Integer afterLife;
 
-    public DamageEventImpl(Damager source, Destroyable target, Integer previousLife, Integer afterLife) {
+    public DamageDataImpl(Damager source, Destroyable target, Integer previousLife, Integer afterLife) {
         this.source = source;
         this.target = target;
         this.previousLife = previousLife;

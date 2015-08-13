@@ -8,7 +8,7 @@ import br.com.pandox.cg.server.domain.battleground.playerground.phase.Battlegrou
 import br.com.pandox.cg.server.domain.cards.BasicCard;
 import br.com.pandox.cg.server.domain.cards.deck.DeckBuilder;
 import br.com.pandox.cg.server.domain.damageProcessor.DamageProcessor;
-import br.com.pandox.cg.server.domain.event.DamageEvent;
+import br.com.pandox.cg.server.domain.event.DamageData;
 import br.com.pandox.cg.server.domain.player.Player;
 import com.google.common.collect.ImmutableList;
 
@@ -68,15 +68,17 @@ public class BattlegroundImpl implements Battleground, Battleground.Round, Battl
     }
 
     @Override
-    public List<DamageEvent> attack(BasicCard card, Destroyable target, DamageProcessor damageProcessor) {
+    public List<DamageData> attack(BasicCard card, Destroyable target, DamageProcessor damageProcessor) {
+        List<DamageData> damageDatas = Collections.EMPTY_LIST;
+
         ImmutableList<BasicCard> fieldCards = round().turn().player().field().cards();
         for (BasicCard fieldCard : fieldCards) {
             if(card.equals(fieldCard)) {
-                return damageProcessor.process(card, target);
+                damageDatas.addAll(damageProcessor.process(card, target));
             }
         }
 
-        return Collections.emptyList();
+        return damageDatas;
     }
 
     @Override

@@ -2,18 +2,18 @@ package br.com.pandox.cg.server.domain.damageProcessor;
 
 import br.com.pandox.cg.server.domain.battleground.gameMechanics.Damager;
 import br.com.pandox.cg.server.domain.battleground.gameMechanics.Destroyable;
-import br.com.pandox.cg.server.domain.event.DamageEvent;
-import br.com.pandox.cg.server.domain.event.DamageEventImpl;
+import br.com.pandox.cg.server.domain.event.DamageData;
+import br.com.pandox.cg.server.domain.event.DamageDataImpl;
 import com.google.common.collect.Lists;
 
 import java.util.List;
 
-public class NullDamageProcessor implements DamageProcessor {
+public class NullDamageProcessor extends SimpleDamageProcessor implements DamageProcessor {
 
 
-    @Override public List<DamageEvent> process(Damager source, Destroyable destroyable) {
+    @Override public List<DamageData> process(Damager source, Destroyable destroyable) {
 
-        DamageEvent damageEvent = new DamageEventImpl(source, destroyable, 1, 1);
-        return Lists.newArrayList(damageEvent);
+        DamageData damageData = new DamageDataImpl(source, destroyable, 1, 1);
+        return Lists.newArrayList(damageData);
     }
 }

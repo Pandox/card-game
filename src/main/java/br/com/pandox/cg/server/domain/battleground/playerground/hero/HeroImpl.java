@@ -2,7 +2,6 @@ package br.com.pandox.cg.server.domain.battleground.playerground.hero;
 
 import br.com.pandox.cg.server.domain.battleground.gameMechanics.Damager;
 import br.com.pandox.cg.server.domain.battleground.gameMechanics.GameMechanics;
-import br.com.pandox.cg.server.domain.event.DamageEvent;
 
 public class HeroImpl implements Hero {
 
@@ -22,8 +21,8 @@ public class HeroImpl implements Hero {
     }
 
     @Override
-    public DamageEvent damage(Damager damager) {
-        return null;
+    public void damage(Damager damager) {
+        this.life -= damager.power();
     }
 
     @Override
