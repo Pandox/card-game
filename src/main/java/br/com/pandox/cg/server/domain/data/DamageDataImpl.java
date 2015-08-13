@@ -1,4 +1,4 @@
-package br.com.pandox.cg.server.domain.event;
+package br.com.pandox.cg.server.domain.data;
 
 import br.com.pandox.cg.server.domain.battleground.gameMechanics.Damager;
 import br.com.pandox.cg.server.domain.battleground.gameMechanics.Destroyable;

@@ -2,14 +2,12 @@ package br.com.pandox.cg.server.domain.battleground;
 
 import br.com.pandox.cg.server.domain.battleground.gameMechanics.GameMechanics;
 import br.com.pandox.cg.server.domain.cards.BasicCard;
-import br.com.pandox.cg.server.domain.damageProcessor.NullDamageProcessor;
-import br.com.pandox.cg.server.domain.event.DamageData;
+import br.com.pandox.cg.server.domain.damageProcessor.NullEventBus;
 import br.com.pandox.cg.server.domain.player.Player;
 import br.com.pandox.cg.server.domain.player.PlayerImpl;
 import org.testng.annotations.Test;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
@@ -55,8 +53,10 @@ public class BattlegroundImplTest {
 
         BasicCard card = turn.player().hand().cards().get(0);
         turn.setCard(card);
-        List<DamageData> damages = turn.attack(card, turn.enemy().hero(), new NullDamageProcessor());
-        assertEquals(damages.size(), 1);
+
+        NullEventBus eventBus = new NullEventBus();
+        turn.attack(card, turn.enemy().hero(), eventBus);
+        assertNotNull(eventBus.getEvent());
     }
 
     private Battleground getBattleground() {

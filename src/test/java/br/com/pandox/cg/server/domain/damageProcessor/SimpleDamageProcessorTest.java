@@ -5,7 +5,7 @@ import br.com.pandox.cg.server.domain.battleground.gameMechanics.Destroyable;
 import br.com.pandox.cg.server.domain.battleground.gameMechanics.GameMechanics;
 import br.com.pandox.cg.server.domain.battleground.playerground.hero.HeroImpl;
 import br.com.pandox.cg.server.domain.cards.SoldierCard;
-import br.com.pandox.cg.server.domain.event.DamageData;
+import br.com.pandox.cg.server.domain.data.DamageData;
 import org.testng.annotations.Test;
 
 import java.util.List;

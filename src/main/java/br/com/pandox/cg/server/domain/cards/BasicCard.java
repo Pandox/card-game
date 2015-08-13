@@ -7,7 +7,5 @@ public interface BasicCard extends Damager, Destroyable {
 
     Integer power();
 
-    Integer life();
-
     Integer runes();
 }

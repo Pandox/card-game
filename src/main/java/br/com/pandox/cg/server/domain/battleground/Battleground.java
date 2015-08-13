@@ -3,11 +3,8 @@ package br.com.pandox.cg.server.domain.battleground;
 import br.com.pandox.cg.server.domain.battleground.gameMechanics.Destroyable;
 import br.com.pandox.cg.server.domain.battleground.playerground.PlayerGround;
 import br.com.pandox.cg.server.domain.cards.BasicCard;
-import br.com.pandox.cg.server.domain.damageProcessor.DamageProcessor;
-import br.com.pandox.cg.server.domain.event.DamageData;
 import br.com.pandox.cg.server.domain.shared.Domain;
-
-import java.util.List;
+import com.google.common.eventbus.EventBus;
 
 public interface Battleground extends Domain {
 
@@ -37,7 +34,7 @@ public interface Battleground extends Domain {
 
             void setCard(BasicCard card);
 
-            List<DamageData> attack(BasicCard card, Destroyable target, DamageProcessor damageProcessor);
+            void attack(BasicCard card, Destroyable target, EventBus eventBus);
 
             PlayerGround player();
 

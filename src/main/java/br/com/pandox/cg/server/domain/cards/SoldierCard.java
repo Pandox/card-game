@@ -14,7 +14,7 @@ public class SoldierCard implements BasicCard {
         return 1;
     }
 
-    @Override public Integer life() {
+    @Override public int life() {
         return lifePoints;
     }
 

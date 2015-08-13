@@ -11,7 +11,7 @@ public class HeroImpl implements Hero {
         life = GameMechanics.INITIAL_LIFE_POINTS;
     }
 
-    @Override public Integer life() {
+    @Override public int life() {
         return life;
     }
 
@@ -27,6 +27,6 @@ public class HeroImpl implements Hero {
 
     @Override
     public Integer power() {
-        return null;
+        return 0;
     }
 }
